@@ -1,0 +1,9 @@
+comment s //
+commentBlockStart s /*
+commentBlockEnd s */
+
+<flags
+  __state_flags s "open-libs verbose"
+  debug s "true"
+  version s "1.0.0"
+>
