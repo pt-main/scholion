@@ -2,7 +2,7 @@
 
 > **Языково-независимый препроцессор с Lua-макросами.**
 
-[![Go](https://img.shields.io/badge/Go-1.27+-00ADD8?logo=go)](https://go.dev)
+[![Go](https://img.shields.io/badge/Go-1.26+-00ADD8?logo=go)](https://go.dev)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Made with lc](https://img.shields.io/badge/engine-pt--main%2Flc-purple)](https://github.com/pt-main/lc)
 
