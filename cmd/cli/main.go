@@ -14,7 +14,7 @@ import (
 	tessera "github.com/pt-main/tessera/impl/go"
 )
 
-var Version = "1.0.2"
+var Version = "1.0.3"
 
 func New() *tap.Parser {
 	p := tap.NewParser("schol", `[?GN]╭───────

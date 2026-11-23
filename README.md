@@ -349,6 +349,7 @@ Besides `lua`, Scholion registers four built-in directives:
 | Directive | Description |
 |---|---|
 | `include <file> [state]` | Read a file and execute it as Lua code in state `state` (default `main`). If the state doesn't exist, it will be created. |
+| `append <file>` | Read a file and insert its raw contents directly into the output buffer without Lua execution (supports multiple files line-by-line in block directives). |
 | `end` | Close **all** Lua states and finish processing. |
 | `echo <text>` | Print text to stdout without a newline (`\n` in text → newline). |
 | `echoln <text>` | Print text to stdout with a newline. |

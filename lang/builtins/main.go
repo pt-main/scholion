@@ -2,12 +2,13 @@ package builtins
 
 import (
 	"fmt"
+	"slices"
+	"strings"
+
 	"github.com/pt-main/scholion/lang/lcproc"
 	luaapi "github.com/pt-main/scholion/lang/luaApi"
 	"github.com/pt-main/scholion/lang/processing"
 	"github.com/pt-main/scholion/lang/utils"
-	"slices"
-	"strings"
 
 	"github.com/pt-main/lc/v2/engine/core"
 )
@@ -17,6 +18,7 @@ var (
 	EndRegex     = `^\s*end\s*$`
 	EchoRegex    = `^\s*echo\s(?<value>.*)`
 	EcholnRegex  = `^\s*echoln\s(?<value>.*)`
+	AppendRegex  = `(?s)^\s*append\s+(?<value>.*)`
 )
 
 type builtins = map[string]func(*luaapi.LuaApi) processing.DirectiveFunc
@@ -50,6 +52,22 @@ var Builtins builtins = builtins{
 					return core.Wrap(lcproc.IncludeError, err_, "incluing '%v'", file)
 				}
 
+			}
+			return nil
+		}
+	},
+	AppendRegex: func(la *luaapi.LuaApi) processing.DirectiveFunc {
+		return func(p *processing.Processor, m map[string]string) core.ErrorInterface {
+			for _, line := range strings.Split(m["value"], "\n") {
+				file := strings.TrimSpace(line)
+				if file == "" {
+					continue
+				}
+				content, err := utils.ReadFileToString(file)
+				if err != nil {
+					return core.Wrap(lcproc.WrappedError, err, "Can't append file '%v'", file)
+				}
+				p.Code = append(p.Code, content)
 			}
 			return nil
 		}
