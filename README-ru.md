@@ -218,7 +218,7 @@ YAML был бы избыточен и опасен (the Norway problem), JSON -
 ## Установка
 
 ```bash
-go install github.com/pt-main/github.com/pt-main/scholion/cmd/schol@latest
+go install github.com/pt-main/scholion/cmd/schol@latest
 ```
 
 ## Быстрый старт

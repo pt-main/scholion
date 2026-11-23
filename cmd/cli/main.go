@@ -4,16 +4,17 @@ import (
 	"errors"
 	"fmt"
 	"path/filepath"
+	"strings"
+
 	"github.com/pt-main/scholion/lang"
 	"github.com/pt-main/scholion/lang/lcproc"
 	"github.com/pt-main/scholion/lang/utils"
-	"strings"
 
 	tap "github.com/pt-main/tap/go"
 	tessera "github.com/pt-main/tessera/impl/go"
 )
 
-var Version = "1.0.0"
+var Version = "1.0.2"
 
 func New() *tap.Parser {
 	p := tap.NewParser("schol", `[?GN]╭───────
@@ -32,11 +33,10 @@ func New() *tap.Parser {
 		if len(s) > 1 {
 			out = s[1]
 		} else {
-			ext := filepath.Ext(input)
-			if ext == ".schol" {
-				ext = filepath.Ext(strings.TrimRight(input, ".schol"))
-			}
-			out = filepath.Base(input) + "_compiled" + ext
+			cleanInput := strings.TrimSuffix(input, ".schol")
+			ext := filepath.Ext(cleanInput)
+			base := strings.TrimSuffix(cleanInput, ext)
+			out = base + "_compiled" + ext
 		}
 		source, err := utils.ReadFileToString(input)
 		if err != nil {

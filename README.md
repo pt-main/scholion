@@ -218,7 +218,7 @@ The lexer first extracts **string literals** with separate rules, and only then 
 ## Installation
 
 ```bash
-go install github.com/pt-main/github.com/pt-main/scholion/cmd/schol@latest
+go install github.com/pt-main/scholion/cmd/schol@latest
 ```
 
 ---
